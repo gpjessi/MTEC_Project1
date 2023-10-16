@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager_Pro : MonoBehaviour
+   
+
 {
     public GameObject coinPrefab;
-    //private float heightValue = 4;
-    private float withValue = 8;
-
-    public Color[] coinColors;
+   
+    private float widthValue = 8;
+     
+   
 
     // Start is called before the first frame update
     void Start()
     {
-        // SpawnCoin();
         InvokeRepeating("SpawnCoin", 4, 2);
+  
+       
     }
 
     // Update is called once per frame
@@ -24,20 +27,16 @@ public class GameManager : MonoBehaviour
     }
     public void SpawnCoin()
     {
-        float randomXValue = Random.Range(-withValue, withValue);
-        //float randomYValue = Random.Range(-heightValue, heightValue);
+        float randomXvalue = Random.Range(-widthValue, widthValue);
 
-        Vector3 pos = new Vector3(randomXValue, 5.5f, 0);
-        GameObject coin = Instantiate(coinPrefab, pos, Quaternion.identity);
-
+        Vector3 pos = new Vector3(randomXvalue, 5.5f, 0);
+        GameObject coin = Instantiate(coinPrefab, pos, Quaternion.identity); // Spawn the coin
 
         CoinScript coinScript = coin.GetComponent<CoinScript>();
-
+       
 
         int rndValue = Random.Range(0, 3);
         coinScript.ChangeCoinValue(rndValue);
-        coinScript.ChangeCoinColor(coinColors[rndValue]);
-
-
+        
     }
 }
